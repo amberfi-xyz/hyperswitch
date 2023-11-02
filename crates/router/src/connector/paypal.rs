@@ -30,8 +30,8 @@ use crate::{
     types::{
         self,
         api::{self, CompleteAuthorize, ConnectorCommon, ConnectorCommonExt, VerifyWebhookSource},
-        ConnectorAuthType, ErrorResponse, Response,
         transformers::ForeignFrom,
+        ConnectorAuthType, ErrorResponse, Response,
     },
     utils::{self, BytesExt},
 };
@@ -136,6 +136,10 @@ where
                     "PayPal-Request-Id".to_string(),
                     key.to_string().into_masked(),
                 ),
+                (
+                    auth_headers::PAYPAL_PARTNER_ATTRIBUTION_ID.to_string(),
+                    "HyperSwitchlegacy_Ecom".to_string().into(),
+                ),
             ];
             result
         } else {
@@ -175,7 +179,7 @@ where
                 ),
                 (
                     auth_headers::PAYPAL_PARTNER_ATTRIBUTION_ID.to_string(),
-                    "HyperSwitchlegacy_Ecom".to_string().into(),
+                    "HyperSwitchPPCP_SP".to_string().into(),
                 ),
             ]
         };
@@ -209,7 +213,7 @@ impl ConnectorCommon for Paypal {
             .change_context(errors::ConnectorError::FailedToObtainAuthType)?;
         Ok(vec![(
             headers::AUTHORIZATION.to_string(),
-            auth.api_key.into_masked(),
+            auth.client_secret.into_masked(),
         )])
     }
 
@@ -315,8 +319,8 @@ impl ConnectorIntegration<api::AccessTokenAuth, types::AccessTokenRequestData, t
             .change_context(errors::ConnectorError::FailedToObtainAuthType)?;
 
         let auth_id = auth
-            .key1
-            .zip(auth.api_key)
+            .client_id
+            .zip(auth.client_secret)
             .map(|(key1, api_key)| format!("{}:{}", key1, api_key));
         let auth_val = format!("Basic {}", consts::BASE64_ENGINE.encode(auth_id.peek()));
 
@@ -1040,8 +1044,8 @@ impl
             .change_context(errors::ConnectorError::FailedToObtainAuthType)?;
 
         let auth_id = auth
-            .key1
-            .zip(auth.api_key)
+            .client_id
+            .zip(auth.client_secret)
             .map(|(key1, api_key)| format!("{}:{}", key1, api_key));
         let auth_val = format!("Basic {}", consts::BASE64_ENGINE.encode(auth_id.peek()));
 
