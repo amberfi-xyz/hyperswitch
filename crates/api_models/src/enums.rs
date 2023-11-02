@@ -117,7 +117,7 @@ pub enum Connector {
     Trustpay,
     // Tsys,
     Tsys,
-    //Volt, added as template code for future usage,
+    Volt,
     Wise,
     Worldline,
     Worldpay,
@@ -136,6 +136,7 @@ impl Connector {
                 | (Self::Payu, _)
                 | (Self::Trustpay, PaymentMethod::BankRedirect)
                 | (Self::Iatapay, _)
+                | (Self::Volt, _)
         )
     }
     pub fn supports_file_storage_module(&self) -> bool {
@@ -237,7 +238,7 @@ pub enum RoutableConnectors {
     Trustpay,
     // Tsys,
     Tsys,
-    // Volt, added as template code for future usage
+    Volt,
     Wise,
     Worldline,
     Worldpay,
