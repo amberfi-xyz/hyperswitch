@@ -10,20 +10,6 @@
 The single API to access payment ecosystems across 130+ countries</div>
 
 <p align="center">
-  <a href="#%EF%B8%8F-quick-start-guide">Quick Start Guide</a> •
-  <a href="#-fast-integration-for-stripe-users">Fast Integration for Stripe Users</a> •
-  <a href="#-supported-features">Supported Features</a> •
-  <a href="#-FAQs">FAQs</a>
-  <br>
-  <a href="#whats-included">What's Included</a> •
-  <a href="#-join-us-in-building-hyperswitch">Join us in building HyperSwitch</a> •
-  <a href="#-community">Community</a> •
-  <a href="#-bugs-and-feature-requests">Bugs and feature requests</a> •
-  <a href="#-versioning">Versioning</a> •
-  <a href="#%EF%B8%8F-copyright-and-license">Copyright and License</a>
-</p>
-
-<p align="center">
   <a href="https://github.com/juspay/hyperswitch/actions?query=workflow%3ACI+branch%3Amain">
     <img src="https://github.com/juspay/hyperswitch/workflows/CI/badge.svg" />
   </a>
